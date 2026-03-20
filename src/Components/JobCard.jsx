@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { AppContext } from '../Context/AppContext'
 import { motion } from 'framer-motion'
 import { FiMapPin, FiDollarSign, FiClock, FiArrowUpRight } from 'react-icons/fi'
+import { assets } from '../assets/assets'
 
 const JobCard = ({ job }) => {
 
@@ -98,6 +99,7 @@ const JobCard = ({ job }) => {
             <FiClock className='w-3.5 h-3.5' />
             <span>2d ago</span>
           </div>
+          <img src={assets.save_later_icon} alt="" />
         </div>
       </div>
 

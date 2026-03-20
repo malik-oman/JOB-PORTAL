@@ -4,6 +4,7 @@ import PopularVacancies from '../Components/PopularVacancies'
 import HowWorks from '../Components/HowWorks'
 import Categories from '../Components/Categories'
 import Jobs from '../Components/Jobs'
+import { Testimonials } from '../Components/Testimonials'
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <HowWorks/>
       <Categories/>
       <Jobs/>
+      <Testimonials/>
     </div>
   )
 }
