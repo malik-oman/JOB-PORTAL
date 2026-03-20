@@ -4,7 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import JobCard from '../Components/JobCard';
 
 const AllJobs = () => {
-  const { jobsData } = useContext(AppContext);
+  const { jobsData, query } = useContext(AppContext);
+
+  const filteredJobs = jobsData.filter((job) =>job.title.toLowerCase().includes(query.toLowerCase()))
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -70,8 +72,8 @@ const AllJobs = () => {
             animate="visible"
             className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8"
           >
-            {jobsData?.length > 0 ? (
-              jobsData.map((job, index) => (
+            {filteredJobs?.length > 0 ? (
+              filteredJobs.map((job, index) => (
                 <motion.div
                   key={job._id}
                   variants={itemVariants}

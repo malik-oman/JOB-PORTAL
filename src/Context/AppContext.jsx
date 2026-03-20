@@ -15,6 +15,7 @@ const AppContextProvider = ({ children }) => {
 
   const [categoriesData, setCategoriesData] = useState([]);
   const [jobsData, setJobsData] = useState([]);
+  const [query,setQuery] = useState("")
 
 
   const fetchCategories = () => {
@@ -41,7 +42,9 @@ const AppContextProvider = ({ children }) => {
     categoriesData,
     setCategoriesData,
     jobsData,
-    setJobsData
+    setJobsData,
+    query,
+    setQuery,
 
   };
 

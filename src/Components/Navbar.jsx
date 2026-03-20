@@ -6,8 +6,20 @@ import { AppContext } from '../Context/AppContext'
 const Navbar = () => {
     const [open, setOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false)
-    const { navigate } = useContext(AppContext)
+    const { navigate,setQuery } = useContext(AppContext)
+    const [input,setInput] = useState("")
     const location = useLocation()
+
+
+    // SEARCH FUNCTION
+
+    const handleSearch = (e) => {
+        if (e.key === "Enter" && input.trim() !=="") {
+            setQuery(input)
+            navigate("/all-jobs")
+            setInput("")
+        }
+    }
 
     // Handle scroll effect
     useEffect(() => {
@@ -79,6 +91,9 @@ const Navbar = () => {
                                 <input 
                                     className="bg-transparent outline-none text-sm w-full placeholder-gray-400 transition-all duration-300" 
                                     type="text" 
+                                    value={input}
+                                    onChange={(e)=> setInput(e.target.value)}
+                                    onKeyDown={handleSearch}
                                     placeholder="Search jobs..." 
                                 />
                             </div>
