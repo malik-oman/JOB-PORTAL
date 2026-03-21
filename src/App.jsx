@@ -8,6 +8,7 @@ import SingUp from './Pages/Auth/SingUp'
 import Login from './Pages/Auth/Login'
 import Navbar from './Components/Navbar'
 import Footer from './Components/Footer'
+import { Toaster } from 'react-hot-toast'
 
 const App = () => {
 
@@ -28,6 +29,7 @@ const App = () => {
       </Routes>
 
            {adminPath || employerPath? null :   <Footer/>}
+           <Toaster/>
     </div>
   )
 }
