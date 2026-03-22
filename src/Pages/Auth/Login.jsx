@@ -23,11 +23,12 @@ const Login = () => {
     })
 
     // AppContext se navigate function lena
-    const { navigate } = useContext(AppContext)
+    const { navigate,user,setUser } = useContext(AppContext)
 
     const handleSubmit = async (e) => {
     e.preventDefault()
     setIsLoading(true)
+    setUser(true)
 
     await new Promise(resolve => setTimeout(resolve, 1500))
 
