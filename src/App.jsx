@@ -9,6 +9,8 @@ import Login from './Pages/Auth/Login'
 import Navbar from './Components/Navbar'
 import Footer from './Components/Footer'
 import { Toaster } from 'react-hot-toast'
+import MyApplication from './Pages/user/MyApplication'
+import Profile from './Pages/user/Profile'
 
 const App = () => {
 
@@ -26,7 +28,14 @@ const App = () => {
         <Route path='/about' element={<About/>}/>
         <Route path='/singup' element={<SingUp/>}/>
         <Route path='/login' element={<Login/>}/>
+
+         {/* =================USER ROUTES===================== */}
+         <Route path='/my-applications' element={<MyApplication/>}/>
+         <Route path='/my-profile' element={<Profile/>}/>
       </Routes>
+
+     
+
 
            {adminPath || employerPath? null :   <Footer/>}
            <Toaster/>
