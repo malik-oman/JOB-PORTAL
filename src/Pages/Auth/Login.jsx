@@ -12,6 +12,7 @@ import {
     FiLoader
 } from 'react-icons/fi'
 import { AppContext } from '../../Context/AppContext'
+import toast from 'react-hot-toast'
 
 const Login = () => {
     const [isLoading, setIsLoading] = useState(false)
@@ -23,10 +24,15 @@ const Login = () => {
     })
 
     // AppContext se navigate function lena
-    const { navigate,user,setUser } = useContext(AppContext)
+    const { navigate,user,setUser, setEmployer } = useContext(AppContext)
 
     const handleSubmit = async (e) => {
     e.preventDefault()
+    if(formData.email === "employer@gmail.com" && formData.password === "12345" ){
+        setEmployer(true);
+        navigate("/employer");
+        toast.success("Login Successfully")
+    } else {
     setIsLoading(true)
     setUser(true)
 
@@ -34,10 +40,10 @@ const Login = () => {
 
     setIsLoading(false)
 
-    // ✅ YE LINE ADD KARO
+   
     navigate('/')
 
-    console.log(formData)
+    }
 }
 
     const handleChange = (e) => {

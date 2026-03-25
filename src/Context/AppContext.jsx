@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { categories } from "../assets/assets";
 import { jobs } from "../assets/assets";
 import toast from "react-hot-toast";
+import { companies } from "../assets/assets";
 
 export const AppContext = createContext();
 
@@ -19,7 +20,12 @@ const AppContextProvider = ({ children }) => {
   const [query,setQuery] = useState("");
 
   const [isJobApplied,setIsJobApplied] = useState(false);
-  const [savedJobs,setSavedJobs] = useState([])
+  const [savedJobs,setSavedJobs] = useState([]);
+
+  const [companyData, setCompanyData] = useState([]);
+  const fetchCompany  = () => {
+    setCompanyData(companies)
+  }
 
 
   const fetchCategories = () => {
@@ -44,7 +50,8 @@ const AppContextProvider = ({ children }) => {
 
   useEffect(() => {
     fetchCategories()
-    fetchJobsData()
+    fetchJobsData();
+    fetchCompany();
   },[])
 
   const value = {
@@ -66,6 +73,8 @@ const AppContextProvider = ({ children }) => {
     savedJobs,
     setSavedJobs,
     savejob,
+    companyData,
+    setCompanyData,
 
   };
 
