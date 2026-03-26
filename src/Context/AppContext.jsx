@@ -4,6 +4,7 @@ import { categories } from "../assets/assets";
 import { jobs } from "../assets/assets";
 import toast from "react-hot-toast";
 import { companies } from "../assets/assets";
+import { applicants } from "../assets/assets";
 
 export const AppContext = createContext();
 
@@ -23,8 +24,16 @@ const AppContextProvider = ({ children }) => {
   const [savedJobs,setSavedJobs] = useState([]);
 
   const [companyData, setCompanyData] = useState([]);
+  const [applicantsData, setApplicantsData] = useState({})
+ 
+
   const fetchCompany  = () => {
     setCompanyData(companies)
+    
+  }
+  const fetchApplicants  = () => {
+    setApplicantsData(applicants)
+    
   }
 
 
@@ -52,6 +61,7 @@ const AppContextProvider = ({ children }) => {
     fetchCategories()
     fetchJobsData();
     fetchCompany();
+    fetchApplicants()
   },[])
 
   const value = {
@@ -75,6 +85,7 @@ const AppContextProvider = ({ children }) => {
     savejob,
     companyData,
     setCompanyData,
+    applicantsData,
 
   };
 
