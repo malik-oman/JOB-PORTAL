@@ -17,6 +17,13 @@ import AddCompany from "./Pages/employer/AddCompany";
 import PostJob from "./Pages/employer/PostJob";
 import JobList from "./Pages/employer/JobList";
 import Applicants from "./Pages/employer/Applicants";
+import AdminLayout from "./Pages/admin/AdminLayout";
+import CategoryList from "./Pages/admin/CategoryList";
+import AddCategory from "./Pages/admin/AddCategory";
+import AllCompanies from "./Pages/admin/AllCompanies";
+import AllApplications from "./Pages/admin/AllApplications";
+import AllUsers from "./Pages/admin/AllUsers";
+import AllJobs from "./Pages/admin/AllJobs";
 
 const App = () => {
   const adminPath = useLocation().pathname.includes("admin");
@@ -45,6 +52,17 @@ const App = () => {
         <Route path="post-job" element={<PostJob/>}/>
         <Route path="job-list" element={<JobList/>}/>
         <Route path="applicants" element={<Applicants/>}/>
+        </Route>
+
+        {/* =============== ADMIN ROUTE====================== */}
+
+         <Route path="/admin" element={<AdminLayout />}>
+        <Route index element={<CategoryList/>}/>
+        <Route path="add-category" element={<AddCategory/>}/>
+        <Route path="all-companies" element={<AllCompanies/>}/>
+        <Route path="all-applications" element={<AllApplications/>}/>
+        <Route path="all-users" element={<AllUsers/>}/>
+        <Route path="all-jobs" element={<AllJobs/>}/>
         </Route>
       </Routes>
 

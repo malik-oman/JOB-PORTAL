@@ -24,7 +24,7 @@ const Login = () => {
     })
 
     // AppContext se navigate function lena
-    const { navigate,user,setUser, setEmployer } = useContext(AppContext)
+    const { navigate,user,setUser, setEmployer,setAdmin } = useContext(AppContext)
 
     const handleSubmit = async (e) => {
     e.preventDefault()
@@ -32,6 +32,10 @@ const Login = () => {
         setEmployer(true);
         navigate("/employer");
         toast.success("Login Successfully")
+    } else if(formData.email === "admin@gmail.com" && formData.password === "12345"){
+        setAdmin(true);
+        navigate("/admin");
+        toast.success("Admin Login Successfully")
     } else {
     setIsLoading(true)
     setUser(true)
