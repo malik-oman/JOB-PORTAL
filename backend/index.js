@@ -5,7 +5,9 @@ import dotenv from 'dotenv'
 import { connectDB } from './config/connectDB.js';
 dotenv.config();
 
+// ROUTER FILES==========================
 import authRouter from './routes/authRoutes.js';
+import userRouter from './routes/userRoutes.js'
 
 const app = express()
 
@@ -25,8 +27,10 @@ app.get("/",(req,res)=>{
 })
 
 // API ROUTES=========================
+app.use("/uploads", express.static("uploads"))
 
 app.use("/auth", authRouter);
+app.use("/user", userRouter);
 
 const PORT = process.env.PORT || 5000;
 
