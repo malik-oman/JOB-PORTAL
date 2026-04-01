@@ -10,15 +10,15 @@ export const getLoggedInUser = async (req, res) => {
     }
     return res.json({ success: true, user });
   } catch (error) {
+    console.error(error);
     return res.json({ success: false, message: "Internal Server Error" });
   }
 };
 
 // USER PROFILE UPDATE================================
-
 export const updateUserProfile = async (req, res) => {
   try {
-    const { id } = req.user;
+    const { id } = req.user; // ID token se le rahe hain
     const {
       name,
       email,
@@ -27,8 +27,11 @@ export const updateUserProfile = async (req, res) => {
       education,
       experience,
       skills,
-      about,
+      bio,
     } = req.body;
+
+    console.log("Received body:", req.body);
+    console.log("Received files:", req.files);
 
     const updates = {
       name,
@@ -38,38 +41,46 @@ export const updateUserProfile = async (req, res) => {
       education,
       experience,
       skills,
-      bio:about,
+      bio: bio,
     };
 
-    if(req.files?.profileImage?.[0]){
-      updates.image = req.file.profileImage[0].filename;
+    // SAHI TARIKA - req.files use karo
+    if (req.files && req.files.image && req.files.image[0]) {
+      updates.image = req.files.image[0].filename;
+      console.log("Image uploaded:", updates.image);
     }
 
-    if(req.resume?.resume?.[0]){
+    if (req.files && req.files.resume && req.files.resume[0]) {
       updates.resume = req.files.resume[0].filename;
+      console.log("Resume uploaded:", updates.resume);
     }
 
     const updatedUser = await User.findByIdAndUpdate(id, updates, {
-      new:true,
+      new: true,
     }).select("-password");
-    if(!updatedUser){
-      return res.json({success:false, message:"User Not Found"})
+    
+    if (!updatedUser) {
+      return res.json({ success: false, message: "User Not Found" });
     }
 
-    return res.json({success:true, message:"Profile Updated Successfully"})
+    return res.json({ 
+      success: true, 
+      message: "Profile Updated Successfully",
+      user: updatedUser 
+    });
   } catch (error) {
-    return res.json({ success: false, message: "internal Server Error" });
+    console.error("Error in updateUserProfile:", error);
+    return res.json({ success: false, message: error.message || "Internal Server Error" });
   }
 };
 
-// GET ALL STUDENT \\ SEEKR==========================
-
-export const getAllStudents = async (req,res) => {
-  
+// GET ALL STUDENT ==========================
+export const getAllStudents = async (req, res) => {
   try {
-    const students = await User.find({role:"student"}).select("-password");
-    return res.json({success: true, students})
+    const students = await User.find({ role: "student" }).select("-password");
+    return res.json({ success: true, students });
   } catch (error) {
-    return res.json({success:false, message:"Internal Server Error"})
+    console.error(error);
+    return res.json({ success: false, message: "Internal Server Error" });
   }
 }
