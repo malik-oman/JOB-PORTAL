@@ -8,6 +8,7 @@ dotenv.config();
 // ROUTER FILES==========================
 import authRouter from './routes/authRoutes.js';
 import userRouter from './routes/userRoutes.js'
+import categoryRouter from './routes/categoryRoutes.js'
 
 const app = express()
 
@@ -31,6 +32,7 @@ app.use("/uploads", express.static("uploads"))
 
 app.use("/auth", authRouter);
 app.use("/user", userRouter);
+app.use("/category", categoryRouter);
 
 const PORT = process.env.PORT || 5000;
 
